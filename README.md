@@ -2,7 +2,7 @@
 
 # Projeto: 
 
-![fundoo]
+![Substitua a imagem ao lado por um screenshot do seu projeto](https://mdswanson.com/static/chops-ux-step-4.png "Screenshot do projeto")
 
 Acesso: 
 
@@ -13,15 +13,17 @@ Francisco Albrecht Ribas - Sistemas de informação
 Dante Dardaque Santos - Sistemas de informação
 
 
-##### Descrição
-Conteúdo:
+#### Nosso Produto
 
-Aparência:
+##### Conteúdo:
 
-Código: 
+##### Aparência:
+
+##### Código: 
 
 
 #### Desenvolvimento
+
 
 
 #### Tecnologias
