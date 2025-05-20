@@ -1,21 +1,14 @@
-namespace WebApiBackend.Models
+namespace WebApiBackend.Models.Entities
 {
-
-    enum roadMaptype{
-        node,
-        link
-    }
-
     public class RoadMapBlocks
     {
+
         public string nome {get; set;}
 
         public string pai {get; set;}
 
         public string filho {get; set;}
 
-        public roadMaptype type {get; set;}
-
-        public List<string> CommentsLInks {get; set;}
+        public List<string> CommentsLinks {get; set;} = new List<string>();
     }
 }
