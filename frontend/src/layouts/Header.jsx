@@ -7,7 +7,8 @@ const Header = () => {
   const isRoadmapsPage = location.pathname === '/roadmaps';
 
   return (
-    <header className="bg-indigo-950 shadow-md py-6 px-6 relative z-50">
+    <header className="bg-indigo-950 shadow-[0_12px_30px_rgba(255,255,255,0.4)] py-6 px-6 relative z-50">
+
       <div className="container mx-auto flex flex-col md:flex-row items-center justify-between md:justify-center space-y-4 md:space-y-0 md:space-x-8">
         
         {/* Logo */}
