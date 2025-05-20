@@ -1,11 +1,12 @@
 import React from 'react'
-import Header from '../layouts/Header'
+import Footer from '../layouts/Footer';
 
 const RoadMapsPage = () => {
   return (
     <>
-    <Header></Header>
     <div>RoadMapsPage</div>
+
+    <Footer></Footer>
     </>
   )
 }

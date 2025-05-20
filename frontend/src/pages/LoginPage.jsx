@@ -1,13 +1,24 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../auth/AuthContext';
 
 const LoginPage = () => {
+  const { login } = useAuth(); // usar o login do contexto
+  const navigate = useNavigate();
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Aqui você pode colocar a lógica de autenticação
-    alert(`Email: ${email}\nSenha: ${password}`);
+
+    const result = await login(email, password); // Verificar api de login
+
+    if (result.success) {
+      navigate('/'); // redireciona pra home
+    } else {
+      alert(result.message); // mostra erro se falhar
+    }
   };
 
   return (

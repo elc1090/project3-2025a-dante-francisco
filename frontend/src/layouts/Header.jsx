@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
 import { useLocation, Link } from 'react-router-dom';
+import { useAuth } from '../auth/AuthContext'; // ajuste o caminho conforme sua estrutura
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const location = useLocation();
   const isRoadmapsPage = location.pathname === '/roadmaps';
 
+  const { user, logout } = useAuth();
+
   return (
     <header className="bg-indigo-950 shadow-[0_12px_30px_rgba(255,255,255,0.4)] py-6 px-6 relative z-50">
-
       <div className="container mx-auto flex flex-col md:flex-row items-center justify-between md:justify-center space-y-4 md:space-y-0 md:space-x-8">
         
         {/* Logo */}
@@ -21,8 +23,7 @@ const Header = () => {
           <Link to="/roadmaps" className="text-white hover:text-indigo-600 transition font-medium">
             Roadmaps
           </Link>
-          
-          {/* Campo de busca apenas em /roadmaps */}
+
           {isRoadmapsPage && (
             <input
               type="text"
@@ -32,13 +33,27 @@ const Header = () => {
           )}
         </nav>
 
-        {/* Botão Login Desktop */}
-        <Link
-          to="/login"
-          className="hidden md:block bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-500 transition font-medium text-center"
-        >
-          Login
-        </Link>
+        {/* Login ou Usuário (Desktop) */}
+        <div className="hidden md:block">
+          {user ? (
+            <div className="flex items-center space-x-4">
+              <span className="text-white font-medium">Olá, {user.name}</span>
+              <button
+                onClick={logout}
+                className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-500 transition font-medium"
+              >
+                Logout
+              </button>
+            </div>
+          ) : (
+            <Link
+              to="/login"
+              className="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-500 transition font-medium text-center"
+            >
+              Login
+            </Link>
+          )}
+        </div>
 
         {/* Botão Menu Mobile (☰) */}
         <button
@@ -52,7 +67,6 @@ const Header = () => {
       {/* Menu Mobile Fullscreen */}
       {menuOpen && (
         <div className="fixed inset-0 bg-indigo-950 text-white flex flex-col items-center justify-center space-y-6 z-50">
-          {/* Botão Fechar */}
           <button
             onClick={() => setMenuOpen(false)}
             className="absolute top-6 right-6 text-4xl font-bold hover:text-indigo-400"
@@ -63,11 +77,11 @@ const Header = () => {
           <Link
             to="/roadmaps"
             className="text-lg hover:text-indigo-600 transition font-medium"
+            onClick={() => setMenuOpen(false)}
           >
             Roadmaps
           </Link>
 
-          {/* Campo de busca apenas em /roadmaps */}
           {isRoadmapsPage && (
             <input
               type="text"
@@ -75,13 +89,29 @@ const Header = () => {
               className="w-3/4 max-w-sm px-4 py-2 border border-white text-white placeholder-white bg-transparent rounded-lg focus:outline-none focus:ring-2 focus:ring-white"
             />
           )}
-  
-          <Link
-            to="/login"
-            className="bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-500 transition font-medium"
-          >
-            Login
-          </Link>
+
+          {user ? (
+            <>
+              <span className="text-lg font-medium">Olá, {user.name}</span>
+              <button
+                onClick={() => {
+                  logout();
+                  setMenuOpen(false);
+                }}
+                className="bg-red-600 text-white px-6 py-2 rounded-lg hover:bg-red-500 transition font-medium"
+              >
+                Logout
+              </button>
+            </>
+          ) : (
+            <Link
+              to="/login"
+              className="bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-500 transition font-medium"
+              onClick={() => setMenuOpen(false)}
+            >
+              Login
+            </Link>
+          )}
         </div>
       )}
     </header>

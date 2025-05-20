@@ -1,71 +1,84 @@
 import React from 'react';
 import Markdown from '../Components/markDown';
-import Header from '../layouts/Header';
-import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
-import rehypeRaw from 'rehype-raw';
+import Footer from '../layouts/Footer';
+import InstructionsRoadMap from '../layouts/InstructionsRoadMap';
+import { useState } from 'react';
 
 const MarkDownPage = () => {
-  const exemploMarkdown = `
-# Título Principal
-
-**Texto em negrito**
-
-*Texto em itálico*
-
-[Link para o Google](https://www.google.com)
-
-- Item 1
-- Item 2
-- Item 3
-
-\`\`\`js
-console.log('Olá, mundo!');
-\`\`\`
-`;
+  const [selectedCategory, setSelectedCategory] = useState('');
+  const [roadmapName, setRoadmapName] = useState('');
+  const categories = [
+  'Frontend Developer',
+  'Backend Developer',
+  'DevOps Engineer',
+  'Full Stack Developer',
+  'QA Engineer',
+  'Data Scientist',
+  'Mobile Developer',
+  'Cybersecurity Specialist',
+  'Cloud Engineer',
+  'Game Developer',
+  'Product Manager',
+  'IOS Developer',
+];
 
   return (
     <>
-      <Header />
+      <InstructionsRoadMap />
 
-      {/* Seção de Instruções com Exemplo */}
-      <section className="bg-indigo-950 text-white py-12 px-6">
-        <div className="container mx-auto max-w-6xl grid grid-cols-1 md:grid-cols-2 gap-8">
-          {/* Exemplo de Markdown renderizado */}
-          <div className="bg-indigo-900 border border-indigo-700 rounded-lg p-6 overflow-auto">
-            <h3 className="text-xl font-semibold mb-4 text-indigo-400">Exemplo:</h3>
+      <div className="my-10 w-full flex justify-center">
+          <div className="w-full h-1 bg-gray-400 shadow-[0_12px_30px_rgba(255,255,255,0.4),0_-12px_30px_rgba(255,255,255,0.4)] rounded-full" />
+      </div>
 
-            <div className="prose prose-invert max-w-none">
-              <ReactMarkdown
-                remarkPlugins={[remarkGfm]}
-                rehypePlugins={[rehypeRaw]}
+
+      {/* Área de seleção de categoria e nome do roadmap */}
+      <section className="container mx-auto px-6 py-8 space-y-6 max-w-md text-center">
+        {/* Nome do Roadmap */}
+        <div>
+          <label
+            htmlFor="roadmap-name"
+            className="block text-base font-semibold text-white mb-2"
+          >
+            Nome do Roadmap:
+          </label>
+          <input
+            id="roadmap-name"
+            type="text"
+            value={roadmapName}
+            onChange={(e) => setRoadmapName(e.target.value)}
+            placeholder="Ex: Roadmap Front-end 2025"
+            className="w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white text-gray-900"
+          />
+        </div>
+
+        {/* Seleção de Categoria */}
+        <div>
+          <p className="text-base font-semibold text-white mb-3">Categoria:</p>
+          <div className="grid grid-cols-3 gap-3 justify-center">
+            {categories.map((cat) => (
+              <button
+                key={cat}
+                onClick={() => setSelectedCategory(cat)}
+                className={`px-3 py-2 rounded-lg border text-sm font-medium transition
+                  ${
+                    selectedCategory === cat
+                      ? 'bg-indigo-600 text-white border-indigo-600'
+                      : 'bg-gray-100 text-gray-800 hover:bg-gray-200'
+                  }`}
               >
-                {exemploMarkdown}
-              </ReactMarkdown>
-            </div>
-            
-          </div>
-
-          {/* Instruções */}
-          <div className="space-y-4 text-sm md:text-base leading-relaxed">
-            <h3 className="text-xl font-semibold text-indigo-400 mb-4">Como usar Markdown:</h3>
-            <ul className="list-disc list-inside space-y-2">
-              <li><strong className="text-indigo-400"># Títulos:</strong> Use <code>#</code> no início da linha.</li>
-              <li><strong className="text-indigo-400">**Negrito**:</strong> Use <code>**texto**</code>.</li>
-              <li><strong className="text-indigo-400">*Itálico*:</strong> Use <code>*texto*</code>.</li>
-              <li><strong className="text-indigo-400">[Links](url):</strong> Use <code>[texto](url)</code>.</li>
-              <li><strong className="text-indigo-400">Listas:</strong> Use <code>-</code> ou <code>*</code> para listas simples.</li>
-              <li><strong className="text-indigo-400">Bloco de código:</strong> Use três crases (<code>```</code>) antes e depois.</li>
-              <li><strong className="text-indigo-400">Imagens:</strong> Use <code>![alt](imagem.png)</code>.</li>
-            </ul>
+                {cat}
+              </button>
+            ))}
           </div>
         </div>
       </section>
 
       {/* Editor Markdown */}
-      <div className="container mx-auto p-6">
+      <div className="container mx-auto p-6 max-w-4xl">
         <Markdown />
       </div>
+
+      <Footer />
     </>
   );
 };
