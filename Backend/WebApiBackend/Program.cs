@@ -7,6 +7,7 @@ using WebApiBackend.Services.RoadMapService;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddScoped<IRoadMap, RoadMapService>();
+builder.Services.AddScoped<IUser, UserService>();
 
 
 // Adicionando credencias do MySQL:

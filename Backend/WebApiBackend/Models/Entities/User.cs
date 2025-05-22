@@ -8,7 +8,7 @@ using System.ComponentModel.DataAnnotations;
 namespace WebApiBackend.Models.Entities
 {
     [Table("User")]
-    public class RoadMap
+    public class User
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

@@ -12,5 +12,6 @@ namespace WebApiBackend.Context
         public RoadMapContext(DbContextOptions<RoadMapContext> options) : base(options){}
         
         public DbSet<RoadMap> RoadMap { get; set; }
+        public DbSet<User> User { get; set;}
     }
 }
