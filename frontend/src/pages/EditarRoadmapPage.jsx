@@ -1,6 +1,6 @@
-import { useParams, useNavigate  } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 import Footer from '../layouts/Footer';
-import MarkdownAccordion from '../components/MarkdownAccordion';
 import { useAuth } from '../auth/AuthContext';
 
 const fakeRoadmaps = [
@@ -83,50 +83,78 @@ Com dedicação e prática, você poderá criar aplicações móveis incríveis 
     ` },
 ];
 
-const RoadMapDetailsPage = () => {
+const EditarRoadmapPage = () => {
   const { roadmapId } = useParams();
-  const navigate = useNavigate();  // <-- Hook para navegar
+  const navigate = useNavigate();
   const { user } = useAuth();
 
   const roadmap = fakeRoadmaps.find((r) => r._id === roadmapId);
 
+  const [title, setTitle] = useState(roadmap ? roadmap.title : '');
+  const [description, setDescription] = useState(roadmap ? roadmap.description : '');
+
   if (!roadmap) {
-    return <div className="max-w-3xl mx-auto p-4">Roadmap não encontrado.</div>;
+    return <div className="max-w-3xl mx-auto p-4 text-white">Roadmap não encontrado.</div>;
   }
 
   const isOwner = user && roadmap.authorId === user._id;
 
-  const handleDelete = () => {
-    console.log(`Roadmap ${roadmap._id} excluído pelo usuário ${user._id}`);
-    alert('Roadmap excluído!');
-  };
+  if (!isOwner) {
+    return <div className="max-w-3xl mx-auto p-4 text-white">Você não tem permissão para editar este roadmap.</div>;
+  }
 
-  const handleEdit = () => {
-    navigate(`/editar-roadmap/${roadmap._id}`);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(`Roadmap ${roadmap._id} atualizado:`, { title, description });
+    alert('Roadmap atualizado com sucesso!');
+    navigate(`/roadmaps/${roadmap._id}`);
   };
 
   return (
     <>
       <div className="max-w-3xl mx-auto p-4 mt-20">
-        <MarkdownAccordion content={roadmap.description} />
+        <h2 className="text-2xl font-bold mb-4 text-white">Editar Roadmap</h2>
 
-        {isOwner && (
-          <div className="mt-4 flex space-x-4">
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div>
+            <label className="block font-semibold text-white">Título:</label>
+            <input
+              type="text"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              className="w-full p-2 border border-gray-300 rounded bg-transparent text-white placeholder-white"
+              required
+            />
+          </div>
+
+          <div>
+            <label className="block font-semibold text-white">Descrição (Markdown):</label>
+            <textarea
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              rows="10"
+              className="w-full p-2 border border-gray-300 rounded bg-transparent text-white placeholder-white"
+              required
+            ></textarea>
+          </div>
+
+          <div className="flex space-x-4">
             <button
-              onClick={handleEdit}
-              className="px-4 py-2 bg-yellow-500 text-white rounded hover:bg-yellow-600"
+              type="submit"
+              className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
             >
-              Editar Roadmap
+              Salvar Alterações
             </button>
 
             <button
-              onClick={handleDelete}
-              className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+              type="button"
+              onClick={() => navigate(-1)}
+              className="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600"
             >
-              Apagar Roadmap
+              Cancelar
             </button>
           </div>
-        )}
+        </form>
       </div>
 
       <Footer />
@@ -134,4 +162,4 @@ const RoadMapDetailsPage = () => {
   );
 };
 
-export default RoadMapDetailsPage;
+export default EditarRoadmapPage;
