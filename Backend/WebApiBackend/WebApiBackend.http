@@ -21,6 +21,17 @@ Content-Type: application/json
 }
 
 ###
+
+POST http://localhost:5259/api/user/PostUser
+Accept: application/json
+Content-Type: application/json
+
+{
+    "Username": "Defaulttt",
+    "password": "senha123"
+}
+
+###
 PUT http://localhost:5259/api/roadmap/PutRoadMap/3
 Content-Type: application/json
 

@@ -14,8 +14,9 @@ namespace WebApiBackend.Models.Entities
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int id {get;set;}
 
-        [Column("userid",TypeName = "smallint")]
+        [ForeignKey("User")]
         public int userId {get; set;}
+        public virtual User User {get; set;}
 
         [Column("name",TypeName = "varchar(55)")]
         public string name {get; set;}

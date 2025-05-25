@@ -3,6 +3,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL;
 using WebApiBackend.Context;
 using WebApiBackend.Models.Entities;
 using WebApiBackend.Services.RoadMapService;
+using WebApiBackend.Services.UserService;
 
 var builder = WebApplication.CreateBuilder(args);
 
