@@ -15,7 +15,11 @@ Accept: application/json
 Content-Type: application/json
 
 {
-    "userId": 13,
+    "userId": 1,
+    "user": {
+        "Username": "Default",
+        "password": "senha"
+    },
     "name": "Chicooocopy",
     "roadmap": "mamooamamamamamammaaaa"
 }

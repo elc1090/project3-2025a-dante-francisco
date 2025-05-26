@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Usuario\\Documents\\SI_8_semestre_UFSM_Santa_Maria\\WEB_DEV\\Proj3\\project3-2025a-dante-francisco\\Backend\\WebApiBackend\\WebApiBackend.csproj": {}
+    "C:\\Users\\Usuario\\Documents\\SI_8_semestre_UFSM_Santa_Maria\\WEB_DEV\\fornt\\project3-2025a-dante-francisco\\Backend\\WebApiBackend\\WebApiBackend.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Usuario\\Documents\\SI_8_semestre_UFSM_Santa_Maria\\WEB_DEV\\Proj3\\project3-2025a-dante-francisco\\Backend\\WebApiBackend\\WebApiBackend.csproj": {
+    "C:\\Users\\Usuario\\Documents\\SI_8_semestre_UFSM_Santa_Maria\\WEB_DEV\\fornt\\project3-2025a-dante-francisco\\Backend\\WebApiBackend\\WebApiBackend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Usuario\\Documents\\SI_8_semestre_UFSM_Santa_Maria\\WEB_DEV\\Proj3\\project3-2025a-dante-francisco\\Backend\\WebApiBackend\\WebApiBackend.csproj",
+        "projectUniqueName": "C:\\Users\\Usuario\\Documents\\SI_8_semestre_UFSM_Santa_Maria\\WEB_DEV\\fornt\\project3-2025a-dante-francisco\\Backend\\WebApiBackend\\WebApiBackend.csproj",
         "projectName": "WebApiBackend",
-        "projectPath": "C:\\Users\\Usuario\\Documents\\SI_8_semestre_UFSM_Santa_Maria\\WEB_DEV\\Proj3\\project3-2025a-dante-francisco\\Backend\\WebApiBackend\\WebApiBackend.csproj",
+        "projectPath": "C:\\Users\\Usuario\\Documents\\SI_8_semestre_UFSM_Santa_Maria\\WEB_DEV\\fornt\\project3-2025a-dante-francisco\\Backend\\WebApiBackend\\WebApiBackend.csproj",
         "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Usuario\\Documents\\SI_8_semestre_UFSM_Santa_Maria\\WEB_DEV\\Proj3\\project3-2025a-dante-francisco\\Backend\\WebApiBackend\\obj\\",
+        "outputPath": "C:\\Users\\Usuario\\Documents\\SI_8_semestre_UFSM_Santa_Maria\\WEB_DEV\\fornt\\project3-2025a-dante-francisco\\Backend\\WebApiBackend\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

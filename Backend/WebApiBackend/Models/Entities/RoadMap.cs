@@ -15,8 +15,8 @@ namespace WebApiBackend.Models.Entities
         public int id {get;set;}
 
         [ForeignKey("User")]
-        public int userId {get; set;}
-        public virtual User User {get; set;}
+        public int userid {get; set;}
+        public User User {get; init;}
 
         [Column("name",TypeName = "varchar(55)")]
         public string name {get; set;}

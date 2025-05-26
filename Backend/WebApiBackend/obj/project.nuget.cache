@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "aaZSsxVd7YM=",
+  "dgSpecHash": "6gWIpEdMqew=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Usuario\\Documents\\SI_8_semestre_UFSM_Santa_Maria\\WEB_DEV\\Proj3\\project3-2025a-dante-francisco\\Backend\\WebApiBackend\\WebApiBackend.csproj",
+  "projectFilePath": "C:\\Users\\Usuario\\Documents\\SI_8_semestre_UFSM_Santa_Maria\\WEB_DEV\\fornt\\project3-2025a-dante-francisco\\Backend\\WebApiBackend\\WebApiBackend.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Usuario\\.nuget\\packages\\microsoft.aspnetcore.openapi\\9.0.4\\microsoft.aspnetcore.openapi.9.0.4.nupkg.sha512",
     "C:\\Users\\Usuario\\.nuget\\packages\\microsoft.entityframeworkcore\\9.0.1\\microsoft.entityframeworkcore.9.0.1.nupkg.sha512",
