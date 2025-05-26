@@ -1,28 +1,51 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Footer from '../layouts/Footer';
+import Pagination from '../components/Pagination';
+import Get_RoadMap from '../requests/GetRoadMap'
 
 const fakeRoadmaps = [
-  { _id: '1', title: 'Como se tornar Frontend Developer', description: '...' },
-  { _id: '2', title: 'Desenvolvimento Mobile', description: '...' },
-  { _id: '3', title: 'DevOps Essentials', description: '...' },
-  { _id: '4', title: 'Backend Developer', description: '...' },
-  { _id: '5', title: 'Fullstack Developer', description: '...' },
-  { _id: '6', title: 'Data Science', description: '...' },
-  { _id: '7', title: 'Machine Learning', description: '...' },
-  { _id: '8', title: 'IA Generativa', description: '...' },
-  { _id: '9', title: 'Cibersegurança', description: '...' },
-  { _id: '10', title: 'Blockchain', description: '...' },
-  { _id: '11', title: 'Game Development', description: '...' },
-  { _id: '12', title: 'Cloud Computing', description: '...' },
+  { id: '1', name: 'Como se tornar Frontend Developer', roadmap: '...' },
+  { id: '2', name: 'Desenvolvimento Mobile', roadmap: '...' },
+  { id: '3', name: 'DevOps Essentials', roadmap: '...' },
+  { id: '4', name: 'Backend Developer', roadmap: '...' },
+  { id: '5', name: 'Fullstack Developer', roadmap: '...' },
+  { id: '6', name: 'Data Science', roadmap: '...' },
+  { id: '7', name: 'Machine Learning', roadmap: '...' },
+  { id: '8', name: 'IA Generativa', roadmap: '...' },
+  { id: '9', name: 'Cibersegurança', roadmap: '...' },
+  { id: '10', name: 'Blockchain', roadmap: '...' },
+  { id: '11', name: 'Game Development', roadmap: '...' },
+  { id: '12', name: 'Cloud Computing', roadmap: '...' },
 ];
 
 const RoadMapsPage = () => {
   const [searchTerm, setSearchTerm] = useState('');
+  const [RoadMapList, setRoadMapList] = useState(fakeRoadmaps);
+  const [activePage,setActivePage] = useState(1);
 
-  const filteredRoadmaps = fakeRoadmaps.filter((roadmap) =>
-    roadmap.title.toLowerCase().includes(searchTerm.toLowerCase())
+  const totalPages = (Math.ceil(Object.keys(RoadMapList).length/40));
+  const filteredRoadmaps = RoadMapList.filter((roadmap) =>
+    roadmap.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
+  useEffect(() => {
+    async function getData(){
+      const data = await Get_RoadMap();
+      if(data){
+        setRoadMapList(data.dados);
+      }
+    }
+    getData();
+  },[]);
+
+  useEffect(() => {
+    setActivePage(1);
+  },[searchTerm,RoadMapList]);
+
+  const handleActivePage = (pag) => {
+    setActivePage(pag);
+  }
 
   return (
     <>
@@ -39,17 +62,18 @@ const RoadMapsPage = () => {
 
       {/* Lista de roadmaps */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-3xl mx-auto px-4">
-        {filteredRoadmaps.map((roadmap) => (
+        {filteredRoadmaps.slice(((activePage-1)*40),((activePage*40)-1)).map((roadmap) => (
           <Link
-            key={roadmap._id}
-            to={`/roadmaps/${roadmap._id}`}
+            key={roadmap.id}
+            to={`/roadmaps/${roadmap.id}`}
             className="bg-gray-800 hover:bg-indigo-600 text-white text-base font-semibold py-6 px-4 rounded-xl shadow-md transition duration-300 cursor-pointer text-center"
           >
-            {roadmap.title}
+            {roadmap.name}
           </Link>
         ))}
       </div>
-
+      <Pagination totalPages={totalPages} setActivePage={handleActivePage} activePage={activePage}></Pagination>
+        
       <Footer />
     </>
   );
