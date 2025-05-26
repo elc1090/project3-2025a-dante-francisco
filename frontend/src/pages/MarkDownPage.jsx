@@ -1,5 +1,5 @@
 import React from 'react';
-import Markdown from '../Components/markDown';
+import Markdown from '../Components/MarkDown';
 import Footer from '../layouts/Footer';
 import InstructionsRoadMap from '../layouts/InstructionsRoadMap';
 import { useState } from 'react';
