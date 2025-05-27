@@ -2,9 +2,9 @@
 
 # Projeto: 
 
-![Substitua a imagem ao lado por um screenshot do seu projeto](https://mdswanson.com/static/chops-ux-step-4.png "Screenshot do projeto")
+![Substitua a imagem ao lado por um screenshot do seu projeto](tela_site.png)
 
-Acesso: 
+Acesso: https://ashy-desert-085dc9f10.6.azurestaticapps.net/
 
 
 #### Desenvolvedor(a)
@@ -31,15 +31,16 @@ Dante Dardaque Santos - Sistemas de informação
 - HTML e CSS
 - Tailwind
 - ASP.NET Core
-- PostGres?
+- PostGres
+- Azure
 
 #### Ambiente de desenvolvimento
 - VS Code + Extensions for React, React-Native and Redux in JS/TS and Live Server
 - GitHub 
 
 #### Referências e créditos
-- 
-- 
+- ChatGPT
+- [Microsoft learn ASP.NET webapi](https://learn.microsoft.com/en-us/aspnet/core/tutorials/first-web-api?view=aspnetcore-9.0&tabs=visual-studio)
 
 ---
 Projeto entregue para a disciplina de [Desenvolvimento de Software para a Web](http://github.com/andreainfufsm/elc1090-2025a) em 2025a
