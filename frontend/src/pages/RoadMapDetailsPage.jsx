@@ -1,13 +1,15 @@
 import { useParams, useNavigate  } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import Footer from '../layouts/Footer';
 import MarkdownAccordion from '../components/MarkdownAccordion';
 import { useAuth } from '../auth/AuthContext';
+import Get_RoadMap from '../requests/GetRoadMap';
 
 const fakeRoadmaps = [
-  { _id: '1',
-    title: 'Como se tornar Frontend Developer',
-    authorId: '2222',
-    description: `
+  { id: '1',
+    name: 'Como se tornar Frontend Developer',
+    userid: '2222',
+    roadmap: `
     # Como se tornar Frontend Developer
 
 Este roadmap abrange uma jornada completa para quem deseja atuar como desenvolvedor frontend. A seguir estão os principais tópicos:
@@ -24,7 +26,7 @@ Este roadmap abrange uma jornada completa para quem deseja atuar como desenvolve
 Ao final deste roadmap, você será capaz de construir aplicações frontend profissionais, com foco em usabilidade, estética e performance.
 `
   },
-  { _id: '2', title: 'Desenvolvimento Mobile',  authorId: '3333', description: `
+  { id: '2', name: 'Desenvolvimento Mobile',  userid: '3333', roadmap: `
 # Introdução ao Desenvolvimento Mobile
 
 O desenvolvimento mobile envolve a criação de aplicativos para dispositivos móveis, como smartphones e tablets. Existem diversas abordagens e ferramentas disponíveis.
@@ -84,31 +86,41 @@ Com dedicação e prática, você poderá criar aplicações móveis incríveis 
 ];
 
 const RoadMapDetailsPage = () => {
+  const [roadmap, setRoadMap] = useState(fakeRoadmaps.find((r) => r._id === 2));
   const { roadmapId } = useParams();
   const navigate = useNavigate();  // <-- Hook para navegar
   const { user } = useAuth();
+  //fakeRoadmaps.find((r) => r.id === roadmapId);
 
-  const roadmap = fakeRoadmaps.find((r) => r._id === roadmapId);
+  useEffect(() => {
+    async function getData(){
+      const data = await Get_RoadMap(roadmapId);
+      if(data){
+        setRoadMap(data.dados);
+      }
+    }
+    getData();
+  },[]);
 
   if (!roadmap) {
     return <div className="max-w-3xl mx-auto p-4">Roadmap não encontrado.</div>;
   }
 
-  const isOwner = user && roadmap.authorId === user._id;
+  const isOwner = user && roadmap.userid === user.id;
 
   const handleDelete = () => {
-    console.log(`Roadmap ${roadmap._id} excluído pelo usuário ${user._id}`);
+    console.log(`Roadmap ${roadmap.id} excluído pelo usuário ${user.id}`);
     alert('Roadmap excluído!');
   };
 
   const handleEdit = () => {
-    navigate(`/editar-roadmap/${roadmap._id}`);
+    navigate(`/editar-roadmap/${roadmap.id}`);
   };
 
   return (
     <>
       <div className="max-w-3xl mx-auto p-4 mt-20">
-        <MarkdownAccordion content={roadmap.description} />
+        <MarkdownAccordion content={roadmap.roadmap} />
 
         {isOwner && (
           <div className="mt-4 flex space-x-4">
