@@ -2,7 +2,7 @@
 
 # Projeto: 
 
-![Substitua a imagem ao lado por um screenshot do seu projeto](tela_site.png)
+![Substitua a imagem ao lado por um screenshot do seu projeto](Tela_site.png)
 
 Acesso: https://ashy-desert-085dc9f10.6.azurestaticapps.net/
 
