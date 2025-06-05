@@ -96,7 +96,7 @@ const RoadMapDetailsPage = () => {
     async function getData(){
       const data = await Get_RoadMap(roadmapId);
       if(data){
-        setRoadMap(data.dados);
+        setRoadMap(data);
       }
     }
     getData();
