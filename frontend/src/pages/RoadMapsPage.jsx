@@ -33,7 +33,7 @@ const RoadMapsPage = () => {
     async function getData(){
       const data = await Get_RoadMap();
       if(data){
-        setRoadMapList(data.dados);
+        setRoadMapList(data);
       }
     }
     getData();
