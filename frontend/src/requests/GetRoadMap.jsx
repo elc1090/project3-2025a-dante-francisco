@@ -12,7 +12,7 @@ async function Get_RoadMap(id){
 }
 
 function GetRoadMap(){
-    return fetch(`http://localhost:5259/api/roadmap/GetRoadMap`, {
+    return fetch(`https://roadmap-api-g3dbgweehabxczej.brazilsouth-01.azurewebsites.net//api/roadmap/GetRoadMap`, {
         headers: {
           Accept: "application/json",
         },
@@ -20,7 +20,7 @@ function GetRoadMap(){
 }
 
 function GetRoadMapbyId(id){
-    return fetch(`http://localhost:5259/api/roadmap/GetRoadMap/${id}`, {
+    return fetch(`https://roadmap-api-g3dbgweehabxczej.brazilsouth-01.azurewebsites.net//api/roadmap/GetRoadMap/${id}`, {
         headers: {
           Accept: "application/json",
         },
